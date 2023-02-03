@@ -1,74 +1,60 @@
 const express = require("express");
 const router = express.Router();
-const { db } = require("../firebase");
+const { db, where, query, collection, getDocs } = require("../firebase");
+const { getUsers, addUsers, login } = require("../services/users.service");
 
+router.get("/", async (req,res) => {
+  const users = await getUsers(db)
+  console.log("---", users)
+  
+  res.status(200).send({
+      status: "Success",
+      message: `Successfully retrieved users ${JSON.stringify(users)}`
+  });
+  })
+     
 router.post("/login", async function (req, res) {
-  const login_info = {
+  const loginData = {
     username: req.body.username,
     password: req.body.password,
   };
-  var user = [];
-
+  
   try {
-    console.log("Attempting login....")
-    const usersRef = db.collection("users");
-    const snapshot = await usersRef.where("password", "==", login_info.password).get();
-    if (!snapshot.empty) {
-      snapshot.forEach((doc) => {
-        var data = doc.data();
-        data["id"] = doc.id;
-          user.push(data);
-        });
-      
-      
-      res.status(200).send(user);
-      console.log("Login successful")
-    }
-    else{
-      res.status(200).send(user);
-      console.log("Login Failed")
-    }
-  } catch (err) {
-    console.log(err);
+    await login(db, loginData);
+    res.status(200).send();
+    console.log("Login successful")
+  } catch (error) {
+    console.log(error);
     res.status(404).send({
       status: "Error",
       message: `Error Logging in: ${error}`,
-    });X
+    });
   }
-});
+  });
 
 
 //Register
-router.post("/Register", async function (req, res) {
- 
-  const user_info = {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
+router.post("/register", async function (req, res) {
+  const userData = {
     email: req.body.email,
     username: req.body.username,
-    password: req.body.password,
-    user_id: req.body.user_id,
+    password: req.body.password
   };
 
   try {
     console.log("Attempting to add User to DB.....");
-    await db
-      .collection("users")
-      .add(user_info)
-      .then(() => {
-        console.log("Created new User record in firestore");
-        // See the UserRecord reference doc for the contents of userRecord.
-        res.status(200).send({
-          status: "Success",
-          message: "Successfully added new User",
-        });
-      });
-  } catch (err) {
-    console.log(err);
+    await addUsers(db, userData);
+    res.status(200).send({
+      status: "Success",
+      message: "Successfully added new User",
+    }); 
+  } catch (error) {
+    console.log(error);
     res.status(400).send({
       status: "Failed",
-      message: "Failed to add User.",
+      message: `Failed to add User. ${error}`,
     });
   }
 });
-
+  
+  module.exports = router;

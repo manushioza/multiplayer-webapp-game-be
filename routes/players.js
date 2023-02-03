@@ -3,7 +3,6 @@ const router = express.Router();
 const { db, collection, getDocs } = require("../firebase");
 const { getPlayers } = require("../services/players.service");
 
-
 router.get("/", async (req,res) => {
 const players = await getPlayers(db)
 console.log("---", players)
