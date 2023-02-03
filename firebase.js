@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 const { initializeApp } = require("firebase/app");
 // const { getAnalytics } =  require("firebase/analytics");
-const { getFirestore, collection, getDocs } = require('firebase/firestore/lite')
+const { getFirestore, where, query, collection, getDocs, setDoc, doc, getDoc } = require('firebase/firestore/lite')
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,3 +25,8 @@ const db = getFirestore(app);
 module.exports.db = db;
 module.exports.collection = collection;
 module.exports.getDocs = getDocs;
+module.exports.setDoc = setDoc;
+module.exports.where = where;
+module.exports.query = query;
+module.exports.doc = doc;
+module.exports.getDoc = getDoc;
