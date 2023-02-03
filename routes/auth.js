@@ -23,11 +23,11 @@ router.post("/login", async function (req, res) {
     await login(db, loginData);
     res.status(200).send();
     console.log("Login successful")
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
     res.status(404).send({
       status: "Error",
-      message: `Error Logging in: ${err}`,
+      message: `Error Logging in: ${error}`,
     });
   }
   });
