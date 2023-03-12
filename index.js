@@ -10,7 +10,7 @@ const io = require("socket.io")(server, {
   cors: {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
+    allowedHeaders: ["Access-Control-Allow-Origin"],
     credentials: true
   }
 });
