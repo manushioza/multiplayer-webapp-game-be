@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 
 
 //Start app,listen on PORT3030
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Example app listening on PORT: ${PORT}`)
   })
 
