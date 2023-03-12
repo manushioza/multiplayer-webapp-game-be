@@ -2,11 +2,19 @@
 const express = require('express');
 const app = express();
 const http = require('http');
-const socketIO = require('socket.io');
 
 const server = http.createServer(app);
-const io = socketIO(server);
 const PORT = process.env.PORT || 3000;
+
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "https://multiplayer-game-backend.herokuapp.com",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true
+  }
+});
+
 
 
 const bodyParser = require("body-parser");
