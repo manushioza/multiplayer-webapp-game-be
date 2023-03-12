@@ -26,7 +26,6 @@ app.use(cors())
 
 
 app.get('/', (req, res) => {
-  res.write(`<h1> Listening on port: ${PORT} `);
   res.send('Hello World!');
 })
 
@@ -34,7 +33,7 @@ app.get('/', (req, res) => {
 
 //Start app,listen on PORT3030
 app.listen(PORT, () => {
-    console.log(`Example app listening on PORT${PORT}`)
+    console.log(`Example app listening on PORT: ${PORT}`)
   })
 
   module.exports = {io}
