@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://multiplayer-game-backend.herokuapp.com",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
