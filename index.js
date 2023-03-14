@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://localhost:3000",
     methods: ["GET", "POST"],
     allowedHeaders: ["Access-Control-Allow-Origin"],
     credentials: true
@@ -31,6 +31,11 @@ app.use("/auth", authRoutes);
 app.use(bodyParser.json()); // supPORTjson encoded bodies
 app.use(bodyParser.urlencoded({extended: false,})); // supPORTencoded bodies
 app.use(cors())
+
+app.use(cors({
+  credentials: true,
+  origin: "https://localhost:3000"
+}));
 
 
 app.get('/', (req, res) => {
