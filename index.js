@@ -21,21 +21,21 @@ app.use(bodyParser.urlencoded({ extended: false })); // supPORTencoded bodies
 app.use(cors());
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000")
 }) 
 
 app.get("/", (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.send("Hello World!");
 });
 
 app.get("/auth", (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.send("Hello World!");
 });
 
 app.get("/players", (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.send("Hello World!");
 });
 
