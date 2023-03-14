@@ -20,6 +20,10 @@ app.use(bodyParser.json()); // supPORTjson encoded bodies
 app.use(bodyParser.urlencoded({ extended: false })); // supPORTencoded bodies
 app.use(cors());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+}) 
+
 app.get("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.send("Hello World!");
