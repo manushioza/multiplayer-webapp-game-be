@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://localhost:3000",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     allowedHeaders: ["Access-Control-Allow-Origin"],
     credentials: true
@@ -34,7 +34,7 @@ app.use(cors())
 
 app.use(cors({
   credentials: true,
-  origin: "https://localhost:3000"
+  origin: "http://localhost:3000"
 }));
 
 
