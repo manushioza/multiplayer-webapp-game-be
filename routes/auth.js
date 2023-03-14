@@ -14,6 +14,7 @@ router.get("/", async (req,res) => {
   })
      
 router.post("/login", async function (req, res) {
+  console.log("Trying to login.....")
   const loginData = {
     email: req.body.email,
     password: req.body.password,
