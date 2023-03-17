@@ -7,4 +7,6 @@ const getPlayers = async (db) =>  {
   return playersList;
 }
 
-exports.getPlayers = getPlayers
+
+
+module.exports = {getPlayers}
