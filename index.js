@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 var cors = require('cors')
 const app = express()
 //Set port to 3030
-const port = 3030
+const port = process.env.PORT || 3030
 
 //Import players modules
 const playerRoutes = require('./routes/players');
